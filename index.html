@@ -97,11 +97,16 @@
 }
 
 .hero-image-wrap {
-  width: 320px;
-  height: 320px;
-  border-radius: 50%;
-  border: 4px solid #2563eb;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.hero-photo {
+  width: 220px;
+  height: auto;
+  border-radius: 20px;
+  display: block;
 }
 .hero-kicker {
   font-size: 12px;
@@ -110,7 +115,12 @@
   color: #2563eb;
   margin-bottom: 12px;
 }
-
+.hero-contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
 .hero-title {
   font-size: 64px;
   font-weight: 800;
@@ -179,10 +189,6 @@
   font-size: 14px;
   opacity: 0.9;
 }
-.hero-image-wrap {
-  text-align: center;
-  margin-top: 20px;
-
 
 .hero-btn {
   display: inline-block;
@@ -877,7 +883,7 @@ I work with businesses that rely heavily on manual coordination, repetitive admi
 <p class="hero-name ha2" style="opacity:0.8; margin-top:10px;">
 Focus: Workflow automation • Operations systems • AI-assisted business processes
 </p>
-<div class="eyebrow ha1"style="margin-top:15px; font-size:12px; opacity:0.7;">
+<div class="hero-name ha2"style="margin-top:15px; font-size:12px; opacity:0.7;">
 Built systems using ClickUp • n8n • Zapier • Make • Google Workspace • AI APIs • Airtable
 </div>
     <div class="s-tags ha6">
