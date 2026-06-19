@@ -11,6 +11,7 @@
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
   max-width: 500px;
+  margin: 0 auto;
 }
 
 .contact-box input,
@@ -236,7 +237,9 @@ h1.hero-name .hl{color:#2563eb;text-shadow:0 0 24px rgba(37,99,235,0.18)}
 /* ── CTA section ── */
 .cta{background:#eef2ff;padding:110px 60px;text-align:center;position:relative;overflow:hidden}
 .cta-ghost{position:absolute;font-family:'Bebas Neue',sans-serif;font-size:clamp(8rem,18vw,18rem);color:rgba(37,99,235,0.04);top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;letter-spacing:0.05em;line-height:1}
-.cta-inner{position:relative;z-index:2}
+.cta-inner{position:relative;z-index:2 display: flex;
+  flex-direction: column;
+  align-items: center;}
 .cta-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,7vw,5.5rem);line-height:0.92;margin-bottom:24px;letter-spacing:0.04em}
 .cta-title .hl{color:#2563eb;text-shadow:0 0 24px rgba(37,99,235,0.18)}
 .cta-sub{color:#475569;font-size:1.05rem;line-height:1.8;max-width:540px;margin:0 auto 52px}
