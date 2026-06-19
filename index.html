@@ -1,6 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <style>
+.contact-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  max-width: 500px;
+}
+
+.contact-box input,
+.contact-box textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.2);
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+}
+
+.contact-box input:focus,
+.contact-box textarea:focus {
+  border-color: #6ee7ff;
+  box-shadow: 0 0 0 2px rgba(110, 231, 255, 0.2);
+}
+
+.contact-box textarea {
+  resize: none;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+}
+
+.form-row input {
+  flex: 1;
+}
+
+.contact-box .btn {
+  margin-top: 5px;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(90deg, #6ee7ff, #8b5cf6);
+  color: #000;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.contact-box .btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+</style>
 <meta charset="UTF-8">
 <meta name="description" content="AI Automation & Operations Specialist helping businesses streamline workflows, reduce manual work, and build efficient systems using ClickUp, Make, Zapier, n8n, ChatGPT, and Claude.">
   <meta name="keywords" content="AI automation, workflow automation, ClickUp automation, Zapier workflows, n8n automation, operations specialist, virtual automation assistant, business process automation">
@@ -973,9 +1033,10 @@ The result: faster workflows, fewer errors, and teams that can run more efficien
     Tell me a bit about your business and what you want to improve. I’ll review it and respond with a solution.
   </p>
 
+  <div class="form-row">
   <input type="text" name="name" placeholder="Your Name" required>
-
   <input type="email" name="email" placeholder="Your Email" required>
+</div>
 
   <textarea name="message" placeholder="What processes or workflows do you want to automate?" rows="5" required></textarea>
 
