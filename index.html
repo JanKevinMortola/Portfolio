@@ -77,7 +77,10 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: 100vh;
-  align-items: center;
+  align-items: start;
+}
+.hero p {
+  margin-top: 0;
 }
 
 .hero-left {
@@ -120,9 +123,10 @@
 }
 
 .hero-subtitle {
-  font-size: 22px;
-  margin-top: 16px;
-  font-weight: 500;
+  line-height: 1.1;
+  margin-top: 0;
+  margin-bottom: 12px;
+  display: inline-block;
 }
 
 .hero-desc {
@@ -207,7 +211,7 @@ nav a:hover{color:#2563eb}
 .eyebrow-c::before{display:none}
 
 /* ── Hero name ── */
-h1.hero-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.6rem,6.5vw,6rem);line-height:0.88;letter-spacing:0.03em;margin-bottom:18px}
+h1.hero-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.6rem,6.5vw,6rem);line-height:0.95;letter-spacing:0.03em;margin-bottom:12px}
 h1.hero-name .hl{color:#2563eb;text-shadow:0 0 24px rgba(37,99,235,0.18)}
 
 /* ── Hero role tag ── */
