@@ -74,11 +74,15 @@
   box-shadow: 0 10px 20px rgba(37,99,235,0.25);
 }
 .hero {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
   align-items: center;
-  justify-content: space-between;
   gap: 60px;
   padding: 80px 8%;
+}
+.hero::before,
+.hero::after {
+  opacity: 0.4;
 }
 .hero-left {
   flex: 1;
