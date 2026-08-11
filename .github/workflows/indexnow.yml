@@ -1,0 +1,59 @@
+name: Submit changed pages to IndexNow
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**/*.html'
+      - 'sitemap.xml'
+      - 'robots.txt'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  submit-indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Submit changed portfolio URLs
+        shell: bash
+        env:
+          INDEXNOW_KEY: 44115384ecc6357535bce2145d35289a
+          KEY_LOCATION: https://jankevinmortola.github.io/Portfolio/44115384ecc6357535bce2145d35289a.txt
+          SITE_ROOT: https://jankevinmortola.github.io/Portfolio
+        run: |
+          set -euo pipefail
+
+          if git rev-parse HEAD^ >/dev/null 2>&1; then
+            changed=$(git diff --name-only HEAD^ HEAD -- '*.html')
+          else
+            changed=$(find . -maxdepth 1 -name '*.html' -printf '%f\n')
+          fi
+
+          if [ -z "$changed" ]; then
+            echo "No changed HTML pages to submit."
+            exit 0
+          fi
+
+          while IFS= read -r file; do
+            [ -z "$file" ] && continue
+            if [ "$file" = "index.html" ]; then
+              url="$SITE_ROOT/"
+            else
+              url="$SITE_ROOT/$file"
+            fi
+
+            echo "Submitting: $url"
+            curl --fail-with-body --silent --show-error --get \
+              'https://api.indexnow.org/indexnow' \
+              --data-urlencode "url=$url" \
+              --data-urlencode "key=$INDEXNOW_KEY" \
+              --data-urlencode "keyLocation=$KEY_LOCATION"
+            echo
+          done <<< "$changed"
