@@ -1,0 +1,1 @@
+const reveal=()=>{document.querySelectorAll('.reveal').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<window.innerHeight-70)el.classList.add('visible')})};reveal();window.addEventListener('scroll',reveal,{passive:true});document.querySelectorAll('[data-year]').forEach(el=>el.textContent=new Date().getFullYear());
