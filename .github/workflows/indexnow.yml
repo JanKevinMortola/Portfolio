@@ -1,4 +1,4 @@
-name: Submit changed pages to IndexNow
+name: Submit portfolio pages to IndexNow
 
 on:
   push:
@@ -7,6 +7,7 @@ on:
       - '**/*.html'
       - 'sitemap.xml'
       - 'robots.txt'
+      - '.github/workflows/indexnow.yml'
   workflow_dispatch:
 
 permissions:
@@ -21,7 +22,7 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: Submit changed portfolio URLs
+      - name: Submit portfolio URLs
         shell: bash
         env:
           INDEXNOW_KEY: 44115384ecc6357535bce2145d35289a
@@ -30,25 +31,9 @@ jobs:
         run: |
           set -euo pipefail
 
-          if git rev-parse HEAD^ >/dev/null 2>&1; then
-            changed=$(git diff --name-only HEAD^ HEAD -- '*.html')
-          else
-            changed=$(find . -maxdepth 1 -name '*.html' -printf '%f\n')
-          fi
-
-          if [ -z "$changed" ]; then
-            echo "No changed HTML pages to submit."
-            exit 0
-          fi
-
-          while IFS= read -r file; do
-            [ -z "$file" ] && continue
-            if [ "$file" = "index.html" ]; then
-              url="$SITE_ROOT/"
-            else
-              url="$SITE_ROOT/$file"
-            fi
-
+          submit_url() {
+            local url="$1"
+            [ -z "$url" ] && return 0
             echo "Submitting: $url"
             curl --fail-with-body --silent --show-error --get \
               'https://api.indexnow.org/indexnow' \
@@ -56,4 +41,25 @@ jobs:
               --data-urlencode "key=$INDEXNOW_KEY" \
               --data-urlencode "keyLocation=$KEY_LOCATION"
             echo
-          done <<< "$changed"
+          }
+
+          changed=""
+          if git rev-parse HEAD^ >/dev/null 2>&1; then
+            changed=$(git diff --name-only HEAD^ HEAD -- '*.html' || true)
+          fi
+
+          if [ -n "$changed" ]; then
+            while IFS= read -r file; do
+              [ -z "$file" ] && continue
+              if [ "$file" = "index.html" ]; then
+                submit_url "$SITE_ROOT/"
+              else
+                submit_url "$SITE_ROOT/$file"
+              fi
+            done <<< "$changed"
+          else
+            echo "No HTML change detected; submitting all canonical URLs from sitemap.xml."
+            grep -oE '<loc>[^<]+' sitemap.xml | sed 's#<loc>##' | while IFS= read -r url; do
+              submit_url "$url"
+            done
+          fi
