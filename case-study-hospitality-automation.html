@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hospitality & Short-Term Rental Automation | Jan Kevin Mortola</title>
+  <meta name="description" content="Hospitality and short-term rental automation experience by Jan Kevin Mortola covering guest communication, reservation data, cleaning operations, exception handling, APIs, Google Sheets, and workflow design." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://jankevinmortola.github.io/Portfolio/case-study-hospitality-automation.html" />
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Article",
+    "headline":"Hospitality and Short-Term Rental Automation",
+    "author":{"@type":"Person","name":"Jan Kevin Mortola","jobTitle":"AI Automation Specialist & Operations Systems Consultant"},
+    "about":["Short-Term Rental Operations","Hospitality Automation","Guest Communication","Reservation Systems","n8n","API Integration"],
+    "url":"https://jankevinmortola.github.io/Portfolio/case-study-hospitality-automation.html"
+  }
+  </script>
+  <style>
+    body{font-family:Arial,sans-serif;max-width:900px;margin:0 auto;padding:48px 24px;line-height:1.7;color:#0f172a;background:#f8fafc}h1,h2{line-height:1.2}.eyebrow{color:#2563eb;font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:.8rem}.card{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:24px;margin:22px 0}.tag{display:inline-block;border:1px solid #cbd5e1;border-radius:999px;padding:5px 9px;margin:3px;font-size:.82rem}a{color:#2563eb}.nav{margin-bottom:30px}
+  </style>
+</head>
+<body>
+  <nav class="nav"><a href="./">Portfolio</a> · <a href="case-studies.html">Case Studies</a></nav>
+  <p class="eyebrow">Case Study · Hospitality Operations</p>
+  <h1>Automation for Hospitality & Short-Term Rental Operations</h1>
+  <p>My hospitality background gives me a different starting point from a purely technical automation developer: I understand that guest communication, reservation data, cleaning operations, property readiness, exceptions, and staff handoffs all affect one another. The automation has to support the operating reality, not just move data between apps.</p>
+
+  <div class="card">
+    <h2>Typical operational challenges</h2>
+    <p>Short-term rental and hospitality teams often work across a property management system, messaging tools, spreadsheets, pricing platforms, cleaning processes, and manual staff communication. Problems appear when reservation identifiers are missing, guest data does not match cleanly, a complaint is already open, or a workflow sends a message without understanding the current operational state.</p>
+  </div>
+
+  <h2>Automation patterns I design</h2>
+  <h3>Reservation and guest-data matching</h3>
+  <p>When a form or external source does not include a reliable reservation ID, I design matching logic around the available signals—such as guest name, property, dates, email, phone, or arrival information—and route low-confidence matches for manual review rather than forcing an unsafe automatic match.</p>
+
+  <h3>Guest communication with exception awareness</h3>
+  <p>Scheduled messages should not blindly fire when a guest has an unresolved complaint or unusual reservation state. I use conditional logic so workflows can pause, branch, escalate, or request human review when the situation needs context.</p>
+
+  <h3>Cleaning and turnover operations</h3>
+  <p>Reservation events can be transformed into operational tasks for cleaning, readiness, status tracking, and staff notification. The goal is to reduce manual coordination while still keeping exceptions visible.</p>
+
+  <h3>Spreadsheet and API bridges</h3>
+  <p>For smaller portfolios, a carefully designed Google Sheet or Apps Script layer can sometimes be more maintainable than adding another paid platform. Where stronger orchestration is needed, n8n can connect APIs, webhooks, validation, notifications, and operational data into one workflow.</p>
+
+  <div class="card">
+    <h2>Tools and systems</h2>
+    <div><span class="tag">n8n</span><span class="tag">Google Sheets</span><span class="tag">Google Apps Script</span><span class="tag">APIs</span><span class="tag">Webhooks</span><span class="tag">PMS Workflows</span><span class="tag">Operations Design</span></div>
+  </div>
+
+  <h2>What makes this work different</h2>
+  <p>I combine operations experience with automation design. That means I pay attention to fallback paths, manual-review thresholds, guest-impact risk, staff usability, and what happens when the source data is incomplete—not only the happy path.</p>
+
+  <p><a href="ai-automation-consultant.html">View my broader AI and automation capabilities →</a></p>
+</body>
+</html>
