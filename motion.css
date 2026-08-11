@@ -33,6 +33,14 @@
 .card.particle-ready,.architecture.particle-ready,.callout.particle-ready{overflow:visible}
 .card.particle-visible,.architecture.particle-visible,.callout.particle-visible{overflow:hidden}
 
+/* Homepage vertical rhythm + reveal safety.
+   Grid wrappers use the legacy .reveal class but are not particle targets.
+   Keep them visible so they never reserve large invisible blocks of space. */
+.hero{padding-top:72px;padding-bottom:42px}
+.section{padding:52px 0}
+.section-head{margin-bottom:22px}
+.grid.reveal{opacity:1!important;transform:none!important}
+
 @keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
 @keyframes cardBreath{0%,100%{box-shadow:0 24px 80px rgba(0,0,0,.35),0 0 0 rgba(124,58,237,0)}50%{box-shadow:0 28px 92px rgba(0,0,0,.42),0 0 58px rgba(124,58,237,.115)}}
 @keyframes orbSpin{0%{transform:translateX(-50%) rotate(0deg) scale(1)}50%{transform:translateX(-50%) rotate(180deg) scale(1.04)}100%{transform:translateX(-50%) rotate(360deg) scale(1)}}
@@ -40,11 +48,16 @@
 @keyframes particleAssemble{0%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.2)}18%{opacity:.9}72%{opacity:.72}100%{opacity:0;transform:translate(0,0) scale(1.35)}}
 
 @media(max-width:900px){
+  .hero{padding-top:54px;padding-bottom:34px}
+  .section{padding:44px 0}
   .callout .section-head{grid-template-columns:1fr!important;gap:28px!important}
   .callout .section-head>div:last-child{justify-self:start;max-width:360px}
   .hero-visual:after{width:290px;height:290px}
 }
 @media(max-width:620px){
+  .hero{padding-top:46px;padding-bottom:28px}
+  .section{padding:36px 0}
+  .section-head{margin-bottom:18px}
   .callout{padding:26px 22px}
   .callout h2{font-size:clamp(2rem,10vw,2.7rem)}
   .callout .section-head>div:last-child{max-width:none}
