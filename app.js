@@ -65,14 +65,14 @@
         if (!entry.isIntersecting) return;
         const el = entry.target;
         burstParticles(el);
-        requestAnimationFrame(() => el.classList.add('particle-visible'));
+        requestAnimationFrame(() => el.classList.add('particle-visible', 'visible'));
         observer.unobserve(el);
       });
     }, { threshold: .12, rootMargin: '0px 0px -6% 0px' });
 
     revealTargets.forEach(el => observer.observe(el));
   } else {
-    revealTargets.forEach(el => el.classList.add('particle-visible'));
+    revealTargets.forEach(el => el.classList.add('particle-visible', 'visible'));
   }
 
   const hero = document.querySelector('.hero-visual');
