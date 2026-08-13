@@ -1,0 +1,15 @@
+/* Detail-page spacing only. Existing logo/brand styles intentionally remain untouched. */
+main > .hero[style*="grid-template-columns:1fr"]{padding-top:72px!important;padding-bottom:34px!important;gap:0!important;align-items:start}
+main > .section{padding:58px 0}
+main > .portfolio-preview-section{padding:4px 0 58px}
+main > .portfolio-preview-section + .section{padding-top:58px}
+.portfolio-preview{margin:0;border:1px solid rgba(255,255,255,.11);border-radius:26px;padding:14px;background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.025));box-shadow:0 24px 80px rgba(0,0,0,.3);overflow:hidden}
+.portfolio-preview img{display:block;width:100%;height:auto;border-radius:18px;border:1px solid rgba(255,255,255,.08);background:#0b1020}
+.portfolio-preview figcaption{display:flex;justify-content:space-between;gap:18px;align-items:center;padding:14px 6px 2px;color:#9aa4b5;font-size:.84rem}
+.portfolio-preview figcaption strong{color:#e5e7eb}
+.section .grid{align-items:stretch}
+.section .card{height:100%}
+.section-head{margin-bottom:24px}
+.callout{margin-top:4px}
+@media(max-width:900px){main > .hero[style*="grid-template-columns:1fr"]{padding-top:56px!important;padding-bottom:28px!important}main > .section{padding:48px 0}main > .portfolio-preview-section{padding:0 0 48px}.portfolio-preview{padding:10px;border-radius:22px}.portfolio-preview figcaption{align-items:flex-start;flex-direction:column;gap:4px}}
+@media(max-width:620px){main > .hero[style*="grid-template-columns:1fr"]{padding-top:44px!important;padding-bottom:22px!important}main > .section{padding:40px 0}main > .portfolio-preview-section{padding:0 0 40px}.portfolio-preview{padding:8px;border-radius:18px}.portfolio-preview img{border-radius:13px}.portfolio-preview figcaption{font-size:.78rem;padding:10px 4px 0}}
