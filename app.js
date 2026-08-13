@@ -1,6 +1,23 @@
 (() => {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  const portfolioFiles = new Set([
+    'case-study-education-operations-automation.html',
+    'case-study-hospitality-automation.html',
+    'concept-ai-lead-engine.html',
+    'concept-multilocation-service-operations.html',
+    'concept-ecommerce-ai-support-operations.html',
+    'concept-recruitment-onboarding-automation.html',
+    'concept-self-hosted-ai-knowledge-operations.html'
+  ]);
+  const currentFile = window.location.pathname.split('/').filter(Boolean).pop() || 'index.html';
+  if (portfolioFiles.has(currentFile) && !document.querySelector('link[href="portfolio-pages.css"]')) {
+    const detailStyles = document.createElement('link');
+    detailStyles.rel = 'stylesheet';
+    detailStyles.href = 'portfolio-pages.css';
+    document.head.appendChild(detailStyles);
+  }
+
   document.querySelectorAll('[data-year]').forEach(el => {
     el.textContent = new Date().getFullYear();
   });
