@@ -18,40 +18,109 @@
     document.head.appendChild(detailStyles);
   }
 
+  const systemPages = new Set([
+    'concept-ai-lead-engine.html',
+    'concept-multilocation-service-operations.html',
+    'concept-ecommerce-ai-support-operations.html',
+    'concept-recruitment-onboarding-automation.html',
+    'concept-self-hosted-ai-knowledge-operations.html'
+  ]);
+
+  const systemPageLabels = {
+    'concept-ai-lead-engine.html': 'AI Systems · Revenue Operations',
+    'concept-multilocation-service-operations.html': 'Automation Systems · Service Operations',
+    'concept-ecommerce-ai-support-operations.html': 'AI Systems · Customer Operations',
+    'concept-recruitment-onboarding-automation.html': 'Automation Systems · People Operations',
+    'concept-self-hosted-ai-knowledge-operations.html': 'AI Systems · Private AI'
+  };
+
+  if (systemPages.has(currentFile)) {
+    const hero = document.querySelector('main > .hero');
+    const eyebrow = hero?.querySelector('.eyebrow');
+    const disclaimer = hero?.querySelector('.demo-banner');
+    if (eyebrow) eyebrow.textContent = systemPageLabels[currentFile];
+    if (disclaimer) disclaimer.remove();
+
+    document.title = document.title.replace(' | Concept Architecture', ' | Automation Systems');
+
+    document.querySelectorAll('a[href="case-studies.html"]').forEach(link => {
+      if (link.textContent.includes('Back to concepts')) link.textContent = 'Back to portfolio';
+      if (link.textContent.includes('Case Studies')) link.textContent = '← Portfolio';
+    });
+
+    document.querySelectorAll('.mock-toolbar span').forEach(el => {
+      el.textContent = el.textContent
+        .replace('Concept workflow mockup', 'Automation workflow view')
+        .replace('Concept people-operations mockup', 'People operations workflow view')
+        .replace('Concept knowledge-system mockup', 'Private AI operations view');
+    });
+
+    document.querySelectorAll('.mock-caption').forEach(caption => {
+      caption.innerHTML = '<strong>System view:</strong> representative interface showing the workflow architecture, controls and operating logic.';
+    });
+
+    document.querySelectorAll('.footer p').forEach(el => {
+      el.textContent = el.textContent.replace('Concept Architecture ·', 'Automation Systems ·');
+    });
+  }
+
+  if (currentFile === 'case-studies.html') {
+    document.title = 'Automation Systems Portfolio | Jan Kevin Mortola';
+    const architectureSection = [...document.querySelectorAll('.section')].find(section =>
+      section.querySelector('.badge')?.textContent.trim() === 'Concept architectures'
+    );
+    if (architectureSection) {
+      const badge = architectureSection.querySelector('.badge');
+      const heading = architectureSection.querySelector('h2');
+      const intro = architectureSection.querySelector('.section-head > p');
+      const disclaimer = architectureSection.querySelector('.demo-banner');
+      if (badge) badge.textContent = 'System architectures';
+      if (heading) heading.textContent = 'Advanced automation systems.';
+      if (intro) intro.textContent = 'End-to-end system designs across revenue, service operations, customer support, people operations and private AI.';
+      if (disclaimer) disclaimer.remove();
+      architectureSection.querySelectorAll('.kicker').forEach(kicker => {
+        kicker.textContent = kicker.textContent.replace('Concept · ', '');
+      });
+      architectureSection.querySelectorAll('.card-link').forEach(link => {
+        link.textContent = link.textContent.replace('Explore architecture', 'Open system');
+      });
+    }
+  }
+
   const previewData = {
     'case-study-hospitality-automation.html': {
       title: 'Reservation-to-Operations Control View',
-      subtitle: 'Sample hospitality automation dashboard',
+      subtitle: 'Hospitality automation dashboard',
       stages: [['Reservation Event','PMS · form · schedule'],['Identity Match','Reservation ID + fallback'],['Context Check','Property + open issues'],['Operational Action','Message · turnover · task'],['Exception Queue','Blocked or unclear cases']],
       metrics: [['Active stays','38','Current operating context'],['Matches cleared','96%','High-confidence links'],['Manual review','4','Requires confirmation']]
     },
     'concept-ai-lead-engine.html': {
       title: 'AI Lead & CRM Revenue Control View',
-      subtitle: 'Sample sales automation dashboard',
+      subtitle: 'Sales automation dashboard',
       stages: [['Lead Intake','Ads · forms · chat'],['Identity','Normalize + dedupe'],['AI Qualification','Intent + evidence'],['CRM Pipeline','Owner + stage + SLA'],['Revenue Handoff','Follow-up + operations']],
       metrics: [['New leads','124','Multi-source intake'],['Qualified','41','Priority sales queue'],['SLA risk','6','Follow-up exceptions']]
     },
     'concept-multilocation-service-operations.html': {
       title: 'Multi-Location Service Command Center',
-      subtitle: 'Sample service operations dashboard',
+      subtitle: 'Service operations dashboard',
       stages: [['CRM','Customer + service'],['Routing','Branch + geography'],['Work Order','ClickUp operational record'],['Field Delivery','Schedule + status'],['Control Tower','SLA + exceptions + reports']],
       metrics: [['Open work orders','76','Across branches'],['On-time','93%','Current delivery'],['Exceptions','8','Operator review queue']]
     },
     'concept-ecommerce-ai-support-operations.html': {
       title: 'E-Commerce AI Support Operations',
-      subtitle: 'Sample support and order dashboard',
+      subtitle: 'Support and order operations dashboard',
       stages: [['Support Inbox','Email · chat · ticket'],['AI Triage','Intent + urgency'],['Order Context','Order + shipment'],['Policy Gate','Risk + authorization'],['Resolve / Escalate','Action + audit log']],
       metrics: [['Tickets today','1,268','Unified queue'],['AI assisted','68%','Low-risk cases'],['Human review','32%','Sensitive actions']]
     },
     'concept-recruitment-onboarding-automation.html': {
       title: 'Recruitment & Onboarding Control View',
-      subtitle: 'Sample people operations dashboard',
+      subtitle: 'People operations dashboard',
       stages: [['Application','Form · email · job board'],['AI Assist','Resume evidence'],['Interview','Calendar + evaluation'],['Decision','Human approval'],['Onboarding','Docs + tasks + access']],
       metrics: [['Active candidates','47','Across open roles'],['Interviews','12','This week'],['Onboarding','5','New hires in progress']]
     },
     'concept-self-hosted-ai-knowledge-operations.html': {
       title: 'Self-Hosted AI Operations Console',
-      subtitle: 'Sample private AI dashboard',
+      subtitle: 'Private AI operations dashboard',
       stages: [['User / Workflow','Question or business event'],['Permission Gate','Role + source access'],['RAG Retrieval','Approved context'],['Local Model','Private inference'],['Tool / Approval','Controlled action']],
       metrics: [['Knowledge sources','12','Permission-aware retrieval'],['Pending approvals','2','Sensitive actions held'],['Audit coverage','100%','Sources + tools logged']]
     }
@@ -61,7 +130,7 @@
     const data = previewData[currentFile];
     const section = document.createElement('section');
     section.className = 'portfolio-preview-section sample-screenshot';
-    section.innerHTML = `<div class="shell"><div class="system-mockup reveal"><div class="mock-toolbar"><strong>${data.title}</strong><span>${data.subtitle}</span></div><div class="mock-flow">${data.stages.map((stage,index)=>`${index?'<div class="mock-arrow">→</div>':''}<div class="mock-node"><b>${stage[0]}</b><span>${stage[1]}</span></div>`).join('')}</div><div class="mock-main"><div class="mock-metrics">${data.metrics.map(metric=>`<div class="mock-card"><b>${metric[0]}</b><strong>${metric[1]}</strong><p>${metric[2]}</p></div>`).join('')}</div></div></div><p class="mock-caption"><strong>Sample system screenshot:</strong> portfolio visualization of the architecture; identifying data is intentionally omitted.</p></div>`;
+    section.innerHTML = `<div class="shell"><div class="system-mockup reveal"><div class="mock-toolbar"><strong>${data.title}</strong><span>${data.subtitle}</span></div><div class="mock-flow">${data.stages.map((stage,index)=>`${index?'<div class="mock-arrow">→</div>':''}<div class="mock-node"><b>${stage[0]}</b><span>${stage[1]}</span></div>`).join('')}</div><div class="mock-main"><div class="mock-metrics">${data.metrics.map(metric=>`<div class="mock-card"><b>${metric[0]}</b><strong>${metric[1]}</strong><p>${metric[2]}</p></div>`).join('')}</div></div></div><p class="mock-caption"><strong>System view:</strong> representative interface showing the workflow architecture, controls and operating logic.</p></div>`;
     const detailHero = document.querySelector('main > .hero');
     if (detailHero) detailHero.insertAdjacentElement('afterend', section);
   }
